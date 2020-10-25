@@ -4,7 +4,8 @@ const { expect } = chai
 const {
   isUnique,
   checkPermutation,
-  urlify
+  urlify,
+  palindromePermutation
 } = require('../problems')
 
 describe('Practice Problem Tests', () => {
@@ -41,6 +42,20 @@ describe('Practice Problem Tests', () => {
   describe('urlify', () => {
     it('Should return Mr%20John%20Smith for Mr John Smith', done => {
       expect(urlify('Mr John Smith  ', 13)).to.equal('Mr%20John%20Smith')
+      done()
+    })
+  })
+  describe('palindromePermutation', () => {
+    it('Should return true for Tact Coa', done => {
+      expect(palindromePermutation('Tact Coa')).to.equal(true)
+      done()
+    })
+    it('Should return true for reca arc', done => {
+      expect(palindromePermutation('reca aRc')).to.equal(true)
+      done()
+    })
+    it('Should return false for timothy davis', done => {
+      expect(palindromePermutation('timothy davis')).to.equal(false)
       done()
     })
   })
