@@ -5,7 +5,8 @@ const {
   isUnique,
   checkPermutation,
   urlify,
-  palindromePermutation
+  palindromePermutation,
+  oneAway
 } = require('../problems')
 
 describe('Practice Problem Tests', () => {
@@ -56,6 +57,24 @@ describe('Practice Problem Tests', () => {
     })
     it('Should return false for timothy davis', done => {
       expect(palindromePermutation('timothy davis')).to.equal(false)
+      done()
+    })
+  })
+  describe('oneAway', () => {
+    it('Should return true for pale and ple', done => {
+      expect(oneAway('pale', 'ple')).to.equal(true)
+      done()
+    })
+    it('Should return true for pales and pale', done => {
+      expect(oneAway('pales', 'pale')).to.equal(true)
+      done()
+    })
+    it('Should return true for pale and bale', done => {
+      expect(oneAway('pale', 'bale')).to.equal(true)
+      done()
+    })
+    it('Should return false for pale and bae', done => {
+      expect(oneAway('pale', 'bae')).to.equal(false)
       done()
     })
   })

@@ -11,13 +11,13 @@
 module.exports = function (input, output) {
   if(input === output) return true;
   // Check removal
-  if(input.length === output.length - 1) {
+  if(input.length === output.length + 1) {
     for(let i = 0; i < input.length; i++) {
-        if(output === stringChop(input, i)) return true;
+      if(output === stringChop(input, i)) return true;
     }
   }
   // Check insert
-  if(input.length === output.length + 1) {
+  if(input.length === output.length - 1) {
     //First gotta find which string was inserted
     let insertedLetter = null
     for(let i = 0; i < input.length; i++) {
@@ -37,14 +37,19 @@ module.exports = function (input, output) {
     // Find which letter was replaced
     // also check that it was only one letter that was replaced
     let replacedLetter = null
+    let letterToReplace = null
     for(let i = 0; i < input.length; i++) {
       if(input[i] !== output[i]) {
         replacedLetter = input[i]
+        letterToReplace = output[i]
         break;
       }
     }
-    if()
+    if(!replacedLetter) return false;
+    return input === output.replace(letterToReplace, replacedLetter)
   }
+  // If no cases met
+  return false
 }
 
 function stringChop(str, index) {
