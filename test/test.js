@@ -6,7 +6,8 @@ const {
   checkPermutation,
   urlify,
   palindromePermutation,
-  oneAway
+  oneAway,
+  stringCompression
 } = require('../problems')
 
 describe('Practice Problem Tests', () => {
@@ -38,8 +39,6 @@ describe('Practice Problem Tests', () => {
       done()
     })
   })
-  // Input: "Mr John Smith JJ, 13
-// Output: "Mr%2eJohn%2eSmith"
   describe('urlify', () => {
     it('Should return Mr%20John%20Smith for Mr John Smith', done => {
       expect(urlify('Mr John Smith  ', 13)).to.equal('Mr%20John%20Smith')
@@ -75,6 +74,24 @@ describe('Practice Problem Tests', () => {
     })
     it('Should return false for pale and bae', done => {
       expect(oneAway('pale', 'bae')).to.equal(false)
+      done()
+    })
+  })
+  describe('stringCompression', () => {
+    it('Should return a2b1c5a3 for aabcccccaaa', done => {
+      expect(stringCompression('aabcccccaaa')).to.equal('a2b1c5a3')
+      done()
+    })
+    it('Should return m1e1o1w1 for meow', done => {
+      expect(stringCompression('meow')).to.equal('m1e1o1w1')
+      done()
+    })
+    it('Should return o1h1n1o5 for ohnooooo', done => {
+      expect(stringCompression('ohnooooo')).to.equal('o1h1n1o5')
+      done()
+    })
+    it('Should return t1i1m1o1t1h1y1s1t1e1v1e1n1d1a1v1i1s1 for timothystevendavis', done => {
+      expect(stringCompression('timothystevendavis')).to.equal('t1i1m1o1t1h1y1s1t1e1v1e1n1d1a1v1i1s1')
       done()
     })
   })
