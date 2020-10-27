@@ -9,6 +9,7 @@ const {
   oneAway,
   stringCompression
 } = require('../problems')
+const rotateMatrix = require('../problems/rotate-matrix')
 
 describe('Practice Problem Tests', () => {
   describe('isUnique', () => {
@@ -92,6 +93,65 @@ describe('Practice Problem Tests', () => {
     })
     it('Should return t1i1m1o1t1h1y1s1t1e1v1e1n1d1a1v1i1s1 for timothystevendavis', done => {
       expect(stringCompression('timothystevendavis')).to.equal('t1i1m1o1t1h1y1s1t1e1v1e1n1d1a1v1i1s1')
+      done()
+    })
+  })
+  describe('rotateMatrix', () => {
+    let starterMatrix = [
+        [10, 7, 8, 12],
+        [15, 75, 85, 152],
+        [11, 17, 18, 121],
+        [1340, 57, 38, 512],
+      ]
+      let matrixAfterRotation = null
+    it('Should rotate the matrix 90 degrees', done => {
+      const rotatedMatrix = rotateMatrix(starterMatrix)
+      expect(rotatedMatrix)
+      .to
+      .deep
+      .equal([
+        [1340, 11, 15, 10],
+        [57, 17, 75, 7],
+        [38, 18, 85, 8],
+        [512, 121, 152, 12],
+      ])
+      matrixAfterRotation = rotatedMatrix
+      done()
+    })
+    it('Should rotate the matrix 180 degrees', done => {
+      const rotatedMatrix = rotateMatrix(matrixAfterRotation)
+      expect(rotatedMatrix)
+        .to
+        .deep
+        .equal([
+          [512, 38, 57, 1340],
+          [121, 18, 17, 11],
+          [152, 85, 75, 15],
+          [12, 8, 7, 10],
+        ])
+      matrixAfterRotation = rotatedMatrix
+      done()
+    })
+    it('Should rotate the matrix 270 degrees', done => {
+      const rotatedMatrix = rotateMatrix(matrixAfterRotation)
+      expect(rotatedMatrix)
+        .to
+        .deep
+        .equal([
+          [12, 152, 121, 512],
+          [8, 85, 18, 38],
+          [7, 75, 17, 57],
+          [10, 15, 11, 1340],
+        ])
+      matrixAfterRotation = rotatedMatrix
+      done()
+    })
+    it('Should rotate the matrix back to its original position', done => {
+      const rotatedMatrix = rotateMatrix(matrixAfterRotation)
+      expect(rotatedMatrix)
+        .to
+        .deep
+        .equal(starterMatrix)
       done()
     })
   })
