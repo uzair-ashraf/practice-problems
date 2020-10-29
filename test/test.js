@@ -7,7 +7,8 @@ const {
   urlify,
   palindromePermutation,
   oneAway,
-  stringCompression
+  stringCompression,
+  isSubstring
 } = require('../problems')
 const rotateMatrix = require('../problems/rotate-matrix')
 
@@ -152,6 +153,28 @@ describe('Practice Problem Tests', () => {
         .to
         .deep
         .equal(starterMatrix)
+      done()
+    })
+  })
+  describe('isSubstring', () => {
+    it('Should return true for pale and ple', done => {
+      expect(isSubstring('pale', 'ple')).to.equal(true)
+      done()
+    })
+    it('Should return true for fart and f', done => {
+      expect(isSubstring('fart', 'f')).to.equal(true)
+      done()
+    })
+    it('Should return true for cupertino and cut', done => {
+      expect(isSubstring('cupertino', 'cut')).to.equal(true)
+      done()
+    })
+    it('Should return false for happy and sad', done => {
+      expect(isSubstring('happy', 'sad')).to.equal(false)
+      done()
+    })
+    it('Should return false for tim and chim', done => {
+      expect(isSubstring('tim', 'chim')).to.equal(false)
       done()
     })
   })
