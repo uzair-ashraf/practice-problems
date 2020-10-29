@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 const chai = require('chai')
+const crypto = require('crypto')
 const { expect } = chai
 const {
   isUnique,
@@ -8,9 +9,79 @@ const {
   palindromePermutation,
   oneAway,
   stringCompression,
+  rotateMatrix,
   isSubstring
 } = require('../problems')
-const rotateMatrix = require('../problems/rotate-matrix')
+const {
+  HashTable
+} = require('../data-structures')
+
+describe('Data Structures Tests', () => {
+  describe('Hash Tables', () => {
+    const table = new HashTable()
+    it('Should return an instance of a Hash Table', done => {
+      expect(table instanceof HashTable).to.be.true
+      done()
+    })
+    it('Should have an item count of three items', done => {
+      table.set('firstName', 'Uzair')
+      table.set('lastName', 'Ashraf')
+      table.set('age', 26)
+      expect(table.itemCount).to.equal(3)
+      done()
+    })
+    it('Should double in size', done => {
+      const size = table.size
+      while(size === table.size) {
+        const randomKey = crypto.randomBytes(20).toString('hex');
+        const randomValue = Math.random().toString(36).substr(2, 5);
+        table.set(randomKey, randomValue)
+      }
+      expect(size * 2 === table.size).to.be.true
+      done()
+    })
+    it('Should return value Uzair for firstName key', done => {
+      expect(table.get('firstName')).to.equal('Uzair')
+      done()
+    })
+    it('Should return null for meow key', done => {
+      expect(table.get('meow')).to.be.a('null')
+      done()
+    })
+    it('Should return true having the key for lastName', done => {
+      expect(table.has('lastName')).to.be.true
+      done()
+    })
+    it('Should return false having the key for mikumiku', done => {
+      expect(table.has('mikumiku')).to.be.false
+      done()
+    })
+    it('Should return false deleting a key that doesnt exist', done => {
+      expect(table.delete('mikumiku')).to.be.false
+      done()
+    })
+    it('Should delete the key age', done => {
+      const previousItemCount = table.itemCount
+      expect(table.delete('age')).to.be.true
+      expect(previousItemCount - 1).to.equal(table.itemCount)
+      done()
+    })
+    it('Should no longer have the age key', done => {
+      expect(table.has('age')).to.be.false
+      done()
+    })
+    it('Should double in size again', done => {
+      const size = table.size
+      while (size === table.size) {
+        const randomKey = crypto.randomBytes(20).toString('hex');
+        const randomValue = Math.random().toString(36).substr(2, 5);
+        table.set(randomKey, randomValue)
+      }
+      expect(size * 2 === table.size).to.be.true
+      done()
+    })
+  })
+})
 
 describe('Practice Problem Tests', () => {
   describe('isUnique', () => {
