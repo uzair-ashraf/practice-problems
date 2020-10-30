@@ -22,17 +22,44 @@ module.exports = class SingleLinkedList {
     return true
   }
   remove(val) {
-    let currentNext = this.head
-    while (currentNext.next) {
-      currentNext = currentNext.next
+    const nodeIndex = this.indexOf(val)
+    let nodeCounter = 0
+    if(nodeIndex === -1) return false;
+    if(!nodeIndex) {
+      if(this.head === this.tail) {
+        this.tail = null
+        this.head = null
+      } else {
+        this.head = this.head.next
+      }
+    } else {
+      let currentNext = this.head
+      while(nodeIndex - 1 !== nodeCounter) {
+        currentNext = currentNext.next
+        nodeCounter++
+      }
+      currentNext.next = currentNext.next.next
     }
-    currentNext.next = node
+    return true
+  }
+  indexOf(val) {
+    let nodeCounter = 0
+    let currentNext = this.head
+    while(currentNext) {
+      if(currentNext.val === val) {
+        return nodeCounter
+      } else {
+        nodeCounter++
+        currentNext = currentNext.next
+      }
+    }
+    return -1
   }
   addFirstNode(val) {
     const node = new Node(val)
     this.head = node
     this.tail = node
-    return node
+    return true
   }
   countNodes() {
     let nodeCount = 0

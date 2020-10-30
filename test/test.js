@@ -90,7 +90,6 @@ describe('Data Structures Tests', () => {
     })
     it('Should add a node to the end of the list', done => {
       linkedList.add('hello')
-      console.log(JSON.stringify(linkedList))
       expect(linkedList.head === linkedList.tail).to.be.true
       done()
     })
@@ -106,8 +105,15 @@ describe('Data Structures Tests', () => {
       linkedList.add('bye')
       linkedList.add('meow')
       linkedList.add('rawr')
-      console.log(JSON.stringify(linkedList))
       expect(linkedList.countNodes()).to.equal(4)
+      done()
+    })
+    it('Should return 1 for bye using indexOf', done => {
+      expect(linkedList.indexOf('bye')).to.equal(1)
+      done()
+    })
+    it('Should return -1 for meowmeow using indexOf', done => {
+      expect(linkedList.indexOf('meowmeow')).to.equal(-1)
       done()
     })
     it('Should spread into an array with four items', done => {
@@ -115,6 +121,22 @@ describe('Data Structures Tests', () => {
       const arr2 = Array.from(linkedList)
       expect(arr.length).to.equal(4)
       expect(arr2.length).to.equal(4)
+      done()
+    })
+    it('Should remove all values', done => {
+      expect(linkedList.indexOf('hello')).to.equal(0)
+      expect(linkedList.remove('hello')).to.be.true
+      expect(linkedList.indexOf('hello')).to.equal(-1)
+      expect(linkedList.indexOf('bye')).to.equal(0)
+      expect(linkedList.remove('bye')).to.be.true
+      expect(linkedList.indexOf('bye')).to.equal(-1)
+      expect(linkedList.indexOf('meow')).to.equal(0)
+      expect(linkedList.remove('meow')).to.be.true
+      expect(linkedList.indexOf('meow')).to.equal(-1)
+      expect(linkedList.indexOf('rawr')).to.equal(0)
+      expect(linkedList.remove('rawr')).to.be.true
+      expect(linkedList.indexOf('rawr')).to.equal(-1)
+      expect(linkedList.countNodes()).to.equal(0)
       done()
     })
   })
