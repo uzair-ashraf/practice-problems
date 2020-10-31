@@ -11,7 +11,8 @@ const {
   stringCompression,
   rotateMatrix,
   isSubstring,
-  removeDups
+  removeDups,
+  returnKthToLast
 } = require('../problems')
 const {
   HashTable,
@@ -318,6 +319,34 @@ describe('Practice Problem Tests', () => {
       linkedList.add('nyan')
       linkedList.add('meow')
       expect(removeDups(linkedList).countNodes()).to.equal(2)
+      done()
+    })
+  })
+  describe('returnKthToLast', () => {
+    const linkedList = new SingleLinkedList()
+      linkedList.add('meow')
+      linkedList.add('nyan')
+      linkedList.add('bork')
+      linkedList.add('honk')
+      linkedList.add('monkey')
+    it('Should return the meow node', done => {
+      expect(returnKthToLast(linkedList, 5).val).to.equal('meow')
+      done()
+    })
+    it('Should return the nyan node', done => {
+      expect(returnKthToLast(linkedList, 4).val).to.equal('nyan')
+      done()
+    })
+    it('Should return the bork node', done => {
+      expect(returnKthToLast(linkedList, 3).val).to.equal('bork')
+      done()
+    })
+    it('Should return the honk node', done => {
+      expect(returnKthToLast(linkedList, 2).val).to.equal('honk')
+      done()
+    })
+    it('Should return the monkey node', done => {
+      expect(returnKthToLast(linkedList, 1).val).to.equal('monkey')
       done()
     })
   })
