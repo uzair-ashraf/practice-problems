@@ -12,7 +12,8 @@ const {
   rotateMatrix,
   isSubstring,
   removeDups,
-  returnKthToLast
+  returnKthToLast,
+  deleteMiddleNode
 } = require('../problems')
 const {
   HashTable,
@@ -347,6 +348,33 @@ describe('Practice Problem Tests', () => {
     })
     it('Should return the monkey node', done => {
       expect(returnKthToLast(linkedList, 1).val).to.equal('monkey')
+      done()
+    })
+  })
+  describe('deleteMiddleNode', () => {
+    it('Should remove the c node', done => {
+      const linkedList = new SingleLinkedList()
+      linkedList.add('a')
+      linkedList.add('b')
+      linkedList.add('c')
+      linkedList.add('d')
+      linkedList.add('e')
+      linkedList.add('f')
+      deleteMiddleNode(linkedList)
+      expect([...linkedList].map(x => x.val)).to.deep.equal(['a', 'b', 'd', 'e', 'f'])
+      done()
+    })
+    it('Should remove the d node', done => {
+      const linkedList = new SingleLinkedList()
+      linkedList.add('a')
+      linkedList.add('b')
+      linkedList.add('c')
+      linkedList.add('d')
+      linkedList.add('e')
+      linkedList.add('f')
+      linkedList.add('g')
+      deleteMiddleNode(linkedList)
+      expect([...linkedList].map(x => x.val)).to.deep.equal(['a', 'b', 'c', 'e', 'f', 'g'])
       done()
     })
   })
