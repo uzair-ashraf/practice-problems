@@ -13,7 +13,8 @@ const {
   isSubstring,
   removeDups,
   returnKthToLast,
-  deleteMiddleNode
+  deleteMiddleNode,
+  sumLists
 } = require('../problems')
 const {
   HashTable,
@@ -375,6 +376,20 @@ describe('Practice Problem Tests', () => {
       linkedList.add('g')
       deleteMiddleNode(linkedList)
       expect([...linkedList].map(x => x.val)).to.deep.equal(['a', 'b', 'c', 'e', 'f', 'g'])
+      done()
+    })
+  })
+  describe('sumList', () => {
+    it('Should sum both lists', done => {
+      const linkedList1 = new SingleLinkedList()
+      const linkedList2 = new SingleLinkedList()
+      linkedList1.add(6)
+      linkedList1.add(1)
+      linkedList1.add(7)
+      linkedList2.add(2)
+      linkedList2.add(9)
+      linkedList2.add(5)
+      expect([...sumLists(linkedList1, linkedList2)].map(x => x.val)).to.deep.equal([9, 1, 2])
       done()
     })
   })
