@@ -14,7 +14,8 @@ const {
   removeDups,
   returnKthToLast,
   deleteMiddleNode,
-  sumLists
+  sumLists,
+  linkedListPalindromic
 } = require('../problems')
 const {
   HashTable,
@@ -390,6 +391,24 @@ describe('Practice Problem Tests', () => {
       linkedList2.add(9)
       linkedList2.add(5)
       expect([...sumLists(linkedList1, linkedList2)].map(x => x.val)).to.deep.equal([9, 1, 2])
+      done()
+    })
+  })
+  describe('isLinkedListPalindromic', () => {
+    it('Should return false', done => {
+      const linkedList1 = new SingleLinkedList()
+      linkedList1.add(1)
+      linkedList1.add(2)
+      expect(linkedListPalindromic(linkedList1)).to.be.false
+      done()
+    })
+    it('Should return true', done => {
+      const linkedList2 = new SingleLinkedList()
+      linkedList2.add(1)
+      linkedList2.add(2)
+      linkedList2.add(2)
+      linkedList2.add(1)
+      expect(linkedListPalindromic(linkedList2)).to.be.true
       done()
     })
   })
