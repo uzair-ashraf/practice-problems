@@ -19,7 +19,8 @@ const {
 } = require('../problems')
 const {
   HashTable,
-  SingleLinkedList
+  SingleLinkedList,
+  Stack
 } = require('../data-structures')
 
 describe('Data Structures Tests', () => {
@@ -142,6 +143,38 @@ describe('Data Structures Tests', () => {
       expect(linkedList.remove('rawr')).to.be.true
       expect(linkedList.indexOf('rawr')).to.equal(-1)
       expect(linkedList.countNodes()).to.equal(0)
+      done()
+    })
+  })
+  describe('Stacks', () => {
+    const stack = new Stack()
+    it('Should return an instance of a Stack', done => {
+      expect(stack instanceof Stack).to.be.true
+      done()
+    })
+    it('Should add values using the LIFO principle', done => {
+      stack.push('hello')
+      expect(stack.peek()).to.equal('hello')
+      stack.push('bye')
+      expect(stack.peek()).to.equal('bye')
+      stack.push('meow')
+      expect(stack.peek()).to.equal('meow')
+      expect(stack.size).to.equal(3)
+      done()
+    })
+    it('Should remove values using the LIFO principle', done => {
+      expect(stack.pop()).to.equal('meow')
+      expect(stack.size).to.equal(2)
+      expect(stack.pop()).to.equal('bye')
+      expect(stack.size).to.equal(1)
+      expect(stack.pop()).to.equal('hello')
+      expect(stack.size).to.equal(0)
+      done()
+    })
+    it('Should return null when stack is empty', done => {
+      expect(stack.pop()).to.equal(null)
+      expect(stack.size).to.equal(0)
+      expect(stack.isEmpty).to.be.true
       done()
     })
   })
